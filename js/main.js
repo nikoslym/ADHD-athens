@@ -193,7 +193,7 @@
   });
 
   /* ---------- Mini-step expand (coaching) ---------- */
-  document.querySelectorAll(".mini-step-toggle").forEach(function (btn) {
+  document.querySelectorAll(".mini-step-header").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var step = btn.closest(".mini-step");
       var isOpen = step.classList.contains("open");

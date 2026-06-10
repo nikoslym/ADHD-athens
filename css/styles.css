@@ -1258,9 +1258,15 @@ html[data-lang="el"] .en { display: none !important; }
   display: flex;
   align-items: flex-start;
   gap: 16px;
+  width: 100%;
   padding: 18px 20px;
   cursor: pointer;
   user-select: none;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
 }
 .mini-step .n {
   flex: none;
@@ -1286,9 +1292,6 @@ html[data-lang="el"] .en { display: none !important; }
   font-weight: 700;
   font-size: 13px;
   color: var(--blue);
-  background: none;
-  border: none;
-  cursor: pointer;
   padding: 0;
   white-space: nowrap;
 }
