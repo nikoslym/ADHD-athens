@@ -239,7 +239,7 @@ html[data-lang="el"] .en { display: none !important; }
   width: min(1280px, calc(100% - 40px));
   margin-inline: auto;
 }
-.logo img { height: 44px; width: auto; }
+.logo img { height: 50px; width: auto; }
 .logo { flex: none; display: flex; align-items: center; }
 
 .main-nav { margin-inline: auto; }
@@ -1460,7 +1460,7 @@ html[data-lang="el"] .en { display: none !important; }
   .trust-bar { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .quick-action { right: 14px; bottom: 14px; padding: 14px 20px; font-size: 14.5px; }
-  .logo img { height: 38px; }
+  .logo img { height: 42px; }
 }
 
 /* ---------- Reduced motion ---------- */
