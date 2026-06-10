@@ -43,7 +43,7 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --speed: 0.55s;
 
-  --header-h: 78px;
+  --header-h: 88px;
 }
 
 /* ---------- Reset ---------- */
@@ -232,6 +232,12 @@ html[data-lang="el"] .en { display: none !important; }
   border-bottom-color: var(--line);
   box-shadow: 0 6px 24px rgba(13, 43, 62, 0.06);
 }
+/* Homepage hero: keep the same settled header presentation as inner pages */
+body:has(main > .hero:first-child) .site-header {
+  background: #fff;
+  border-bottom-color: var(--line);
+  box-shadow: 0 6px 24px rgba(13, 43, 62, 0.06);
+}
 .header-inner {
   display: flex;
   align-items: center;
@@ -239,7 +245,12 @@ html[data-lang="el"] .en { display: none !important; }
   width: min(1280px, calc(100% - 40px));
   margin-inline: auto;
 }
-.logo img { height: 50px; width: auto; }
+.site-header .logo img {
+  height: 56px;
+  width: auto;
+  max-width: none;
+  flex-shrink: 0;
+}
 .logo { flex: none; display: flex; align-items: center; }
 
 .main-nav { margin-inline: auto; }
@@ -325,7 +336,7 @@ html[data-lang="el"] .en { display: none !important; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  padding: calc(var(--header-h) + clamp(56px, 8vw, 110px)) 0 clamp(40px, 6vw, 80px);
+  padding: calc(var(--header-h) + clamp(48px, 7vw, 90px)) 0 clamp(40px, 6vw, 80px);
   overflow: hidden;
   background:
     radial-gradient(1100px 600px at 85% -10%, rgba(2, 169, 254, 0.13), transparent 60%),
@@ -1523,7 +1534,7 @@ html[data-lang="el"] .en { display: none !important; }
   .trust-bar { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .quick-action { right: 14px; bottom: 14px; padding: 14px 20px; font-size: 14.5px; }
-  .logo img { height: 42px; }
+  .site-header .logo img { height: 46px; }
 }
 
 /* ---------- Reduced motion ---------- */

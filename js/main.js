@@ -73,7 +73,8 @@
 
   function onScroll() {
     var y = window.scrollY;
-    if (header) header.classList.toggle("scrolled", y > 10);
+    var heroPage = document.querySelector("main > .hero:first-child");
+    if (header) header.classList.toggle("scrolled", !!heroPage || y > 10);
     if (progress) {
       var max = document.documentElement.scrollHeight - window.innerHeight;
       progress.style.width = (max > 0 ? (y / max) * 100 : 0) + "%";
