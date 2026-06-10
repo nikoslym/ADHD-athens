@@ -1247,15 +1247,21 @@ html[data-lang="el"] .en { display: none !important; }
 /* Mini-steps (coaching) */
 .mini-steps { display: grid; gap: 14px; margin: 24px 0; }
 .mini-step {
-  display: flex;
-  gap: 16px;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-m);
-  padding: 18px 20px;
-  transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
 }
-.mini-step:hover { transform: translateX(5px); box-shadow: var(--shadow-s); }
+.mini-step:hover { box-shadow: var(--shadow-s); }
+.mini-step-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  cursor: pointer;
+  user-select: none;
+}
 .mini-step .n {
   flex: none;
   width: 34px; height: 34px;
@@ -1268,8 +1274,50 @@ html[data-lang="el"] .en { display: none !important; }
   font-weight: 800;
   font-size: 15px;
 }
-.mini-step h4 { margin: 2px 0 4px; font-size: 16.5px; }
-.mini-step p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+.mini-step-header h4 { margin: 2px 0 3px; font-size: 16.5px; flex: 1; }
+.mini-step-header .step-summary { margin: 0; font-size: 14px; color: var(--ink-soft); flex: 1; }
+.mini-step-toggle {
+  flex: none;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--blue);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+}
+.mini-step-toggle svg { transition: transform 0.3s var(--ease-out); }
+.mini-step.open .mini-step-toggle svg { transform: rotate(180deg); }
+.mini-step-details {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s var(--ease-out);
+}
+.mini-step.open .mini-step-details { grid-template-rows: 1fr; }
+.mini-step-details-inner {
+  overflow: hidden;
+  padding: 0 20px 0 70px;
+}
+.mini-step.open .mini-step-details-inner { padding-bottom: 20px; }
+.mini-step-details-inner p,
+.mini-step-details-inner ul { font-size: 14.5px; color: var(--ink-soft); margin: 0 0 10px; }
+.mini-step-details-inner ul { padding-left: 0; list-style: none; display: grid; gap: 6px; }
+.mini-step-details-inner ul li { position: relative; padding-left: 22px; }
+.mini-step-details-inner ul li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 8px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--blue);
+  opacity: 0.55;
+}
 
 /* Contact page */
 .contact-grid {

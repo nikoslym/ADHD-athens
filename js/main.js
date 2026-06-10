@@ -192,6 +192,18 @@
     });
   });
 
+  /* ---------- Mini-step expand (coaching) ---------- */
+  document.querySelectorAll(".mini-step-toggle").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var step = btn.closest(".mini-step");
+      var isOpen = step.classList.contains("open");
+      step.classList.toggle("open", !isOpen);
+      btn.setAttribute("aria-expanded", String(!isOpen));
+      var details = step.querySelector(".mini-step-details");
+      if (details) details.setAttribute("aria-hidden", String(isOpen));
+    });
+  });
+
   /* ---------- Testimonial slider ---------- */
   var sliderWrap = document.querySelector(".testimonials-wrap");
   if (sliderWrap) {
