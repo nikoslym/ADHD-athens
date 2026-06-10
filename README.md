@@ -1,4 +1,4 @@
-# ADHD Athens — Website
+# ADHD Athens - Website
 
 A premium, bilingual (EN/ΕΛ) static website for the ADHD Athens clinic, built around a
 proprietary **Focus Mode** design system optimized for visitors with ADHD.
@@ -11,7 +11,7 @@ No build step required. From this folder run:
 python3 -m http.server 8741
 ```
 
-then open http://localhost:8741 — or simply open `index.html` in a browser.
+then open http://localhost:8741 - or simply open `index.html` in a browser.
 
 ## Pages
 
@@ -35,11 +35,11 @@ You can force a language with `?lang=el` or `?lang=en` in any URL.
 - **Phone**: `+30 210 000 0000` (appears in footers, CTA and contact page)
 - **Email**: `info@adhdathens.gr`
 - **Address / opening hours** on `contact.html`
-- **Testimonials** on `index.html` are illustrative — replace with real, consented quotes
+- **Testimonials** on `index.html` are illustrative - replace with real, consented quotes
   (check Greek regulations on patient testimonials for medical services)
-- **Form handling**: the booking form currently uses a `mailto:` action — wire it to a real
+- **Form handling**: the booking form currently uses a `mailto:` action - wire it to a real
   endpoint (e.g. Formspree, Netlify Forms, or a booking system) before launch
-- The stat “35+ years combined experience” — confirm with the team
+- The stat “35+ years combined experience” - confirm with the team
 
 ## Structure
 
@@ -58,4 +58,4 @@ website/
 - WCAG-minded: skip links, focus states, aria states on all interactive components,
   `prefers-reduced-motion` fully supported
 - All graphics are inline SVG; photos are resized/compressed for the web
-- No frameworks or dependencies — two Google Fonts (Commissioner + Inter, both with Greek support)
+- No frameworks or dependencies - two Google Fonts (Commissioner + Inter, both with Greek support)
