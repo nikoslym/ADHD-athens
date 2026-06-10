@@ -977,6 +977,69 @@ html[data-lang="el"] .en { display: none !important; }
 .faq-a-inner ul { margin: 8px 0 0; padding-left: 22px; }
 .faq-a-inner li { margin-bottom: 4px; }
 
+/* ADHD page — science callout */
+.section-science-note {
+  padding-top: 0;
+  padding-bottom: clamp(48px, 6vw, 88px);
+}
+.science-callout {
+  position: relative;
+  max-width: 820px;
+  margin-inline: auto;
+  padding: clamp(40px, 4.5vw, 48px) clamp(28px, 4vw, 52px);
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, rgba(2, 169, 254, 0.55), rgba(255, 132, 248, 0.28) 52%, rgba(249, 191, 9, 0.42)) border-box;
+  border: 2px solid transparent;
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-m);
+}
+.science-callout-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 2.5vw, 22px);
+  text-align: center;
+}
+.science-callout::before {
+  content: "\201C";
+  position: absolute;
+  top: 10px;
+  left: 22px;
+  font-family: var(--font-display);
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 800;
+  color: rgba(2, 169, 254, 0.1);
+  pointer-events: none;
+  user-select: none;
+}
+.science-callout-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  box-shadow:
+    0 0 0 5px #fff,
+    0 0 0 7px rgba(2, 169, 254, 0.22),
+    0 10px 24px rgba(2, 169, 254, 0.28);
+}
+.science-callout-text {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.1vw, 22px);
+  font-weight: 600;
+  line-height: 1.58;
+  color: var(--ink);
+  max-width: 58ch;
+  margin-inline: auto;
+}
+
 /* ---------- Final CTA ---------- */
 .cta-final {
   position: relative;
