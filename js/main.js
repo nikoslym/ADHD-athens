@@ -69,8 +69,6 @@
   /* ---------- Header state + scroll progress ---------- */
   var header = document.querySelector(".site-header");
   var progress = document.querySelector(".scroll-progress");
-  var quickAction = document.querySelector(".quick-action");
-
   function onScroll() {
     var y = window.scrollY;
     var heroPage = document.querySelector("main > .hero:first-child");
@@ -79,7 +77,6 @@
       var max = document.documentElement.scrollHeight - window.innerHeight;
       progress.style.width = (max > 0 ? (y / max) * 100 : 0) + "%";
     }
-    if (quickAction) quickAction.classList.toggle("visible", y > 600);
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();

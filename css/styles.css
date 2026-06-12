@@ -1145,29 +1145,6 @@ body:has(main > .hero:first-child) .site-header {
   color: rgba(255, 255, 255, 0.45);
 }
 
-/* ---------- Quick Action Bar (persistent CTA) ---------- */
-.quick-action {
-  position: fixed;
-  right: 22px;
-  bottom: 22px;
-  z-index: 90;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 26px;
-  border-radius: 999px;
-  background: linear-gradient(120deg, var(--blue), #34b6ff);
-  color: #fff;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 15.5px;
-  box-shadow: 0 14px 36px rgba(2, 169, 254, 0.45);
-  transform: translateY(120px);
-  opacity: 0;
-  transition: transform 0.5s var(--ease-out), opacity 0.5s, box-shadow 0.3s;
-}
-.quick-action.visible { transform: translateY(0); opacity: 1; }
-.quick-action:hover { box-shadow: 0 18px 44px rgba(2, 169, 254, 0.55); transform: translateY(-3px); }
 
 /* ---------- Reveal animations ---------- */
 .reveal {
@@ -1533,7 +1510,6 @@ body:has(main > .hero:first-child) .site-header {
   .hero-chip { display: none; }
   .trust-bar { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
-  .quick-action { right: 14px; bottom: 14px; padding: 14px 20px; font-size: 14.5px; }
   .site-header .logo img { height: 46px; }
 }
 
