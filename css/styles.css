@@ -89,7 +89,11 @@ html[data-lang="el"] .en { display: none !important; }
 }
 .section {
   position: relative;
-  padding: clamp(49px, 6.075vw, 88px) 0 clamp(72px, 9vw, 130px);
+  padding: clamp(59px, 7.29vw, 106px) 0 clamp(72px, 9vw, 130px);
+}
+.page-hero + .section:not(.section-science-note),
+.hero + .section {
+  padding-top: clamp(20px, 2.5vw, 36px);
 }
 .section-soft { background: var(--bg-soft); }
 
@@ -336,7 +340,7 @@ body:has(main > .hero:first-child) .site-header {
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  padding: calc(var(--header-h) + clamp(48px, 7vw, 90px)) 0 clamp(40px, 6vw, 80px);
+  padding: calc(var(--header-h) + clamp(48px, 7vw, 90px)) 0 clamp(32px, 4.5vw, 52px);
   overflow: hidden;
   background:
     radial-gradient(1100px 600px at 85% -10%, rgba(2, 169, 254, 0.13), transparent 60%),
@@ -1170,7 +1174,7 @@ body:has(main > .hero:first-child) .site-header {
 .page-hero {
   position: relative;
   overflow: hidden;
-  padding: calc(var(--header-h) + clamp(48px, 7vw, 90px)) 0 clamp(44px, 6vw, 76px);
+  padding: calc(var(--header-h) + clamp(48px, 7vw, 90px)) 0 clamp(32px, 4.5vw, 52px);
   background:
     radial-gradient(900px 480px at 90% -20%, rgba(2, 169, 254, 0.14), transparent 60%),
     radial-gradient(700px 420px at 0% 110%, rgba(255, 132, 248, 0.09), transparent 55%),
