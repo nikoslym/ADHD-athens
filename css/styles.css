@@ -89,7 +89,7 @@ html[data-lang="el"] .en { display: none !important; }
 }
 .section {
   position: relative;
-  padding: clamp(72px, 9vw, 130px) 0;
+  padding: clamp(49px, 6.075vw, 88px) 0 clamp(72px, 9vw, 130px);
 }
 .section-soft { background: var(--bg-soft); }
 
