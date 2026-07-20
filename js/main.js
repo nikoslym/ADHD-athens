@@ -202,18 +202,23 @@
     });
   });
 
-  /* ---------- Testimonial slider ---------- */
-  var sliderWrap = document.querySelector(".testimonials-wrap");
-  if (sliderWrap) {
-    var track = sliderWrap.querySelector(".testimonial-track");
-    var slides = sliderWrap.querySelectorAll(".testimonial");
-    var dotsWrap = sliderWrap.querySelector(".t-dots");
+  /* ---------- Carousel helper (testimonials + gallery) ---------- */
+  function initCarousel(wrap, opts) {
+    if (!wrap) return;
+    var track = wrap.querySelector(opts.track);
+    var slides = wrap.querySelectorAll(opts.slide);
+    var dotsWrap = wrap.querySelector(opts.dots);
+    var prevBtn = wrap.querySelector(opts.prev);
+    var nextBtn = wrap.querySelector(opts.next);
+    if (!track || !slides.length || !dotsWrap || !prevBtn || !nextBtn) return;
     var idx = 0;
+    var label = opts.label || "Slide";
 
     slides.forEach(function (_, i) {
       var dot = document.createElement("button");
       dot.className = "t-dot";
-      dot.setAttribute("aria-label", "Testimonial " + (i + 1));
+      dot.type = "button";
+      dot.setAttribute("aria-label", label + " " + (i + 1));
       dot.addEventListener("click", function () { go(i); });
       dotsWrap.appendChild(dot);
     });
@@ -231,24 +236,44 @@
       });
     }
 
-    sliderWrap.querySelector(".t-prev").addEventListener("click", function () { go(idx - 1); });
-    sliderWrap.querySelector(".t-next").addEventListener("click", function () { go(idx + 1); });
+    prevBtn.addEventListener("click", function () { go(idx - 1); });
+    nextBtn.addEventListener("click", function () { go(idx + 1); });
 
     // gentle auto-advance, paused on hover/focus (calm, not demanding)
     var timer = null;
     function startAuto() {
       if (prefersReducedMotion) return;
       stopAuto();
-      timer = setInterval(function () { go(idx + 1); }, 8000);
+      timer = setInterval(function () { go(idx + 1); }, opts.interval || 8000);
     }
     function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
-    sliderWrap.addEventListener("mouseenter", stopAuto);
-    sliderWrap.addEventListener("mouseleave", startAuto);
-    sliderWrap.addEventListener("focusin", stopAuto);
-    sliderWrap.addEventListener("focusout", startAuto);
+    wrap.addEventListener("mouseenter", stopAuto);
+    wrap.addEventListener("mouseleave", startAuto);
+    wrap.addEventListener("focusin", stopAuto);
+    wrap.addEventListener("focusout", startAuto);
     go(0);
     startAuto();
   }
+
+  initCarousel(document.querySelector(".testimonials-wrap"), {
+    track: ".testimonial-track",
+    slide: ".testimonial",
+    dots: ".t-dots",
+    prev: ".t-prev",
+    next: ".t-next",
+    label: "Testimonial",
+    interval: 8000
+  });
+
+  initCarousel(document.querySelector(".gallery-wrap"), {
+    track: ".gallery-track",
+    slide: ".gallery-slide",
+    dots: ".g-dots",
+    prev: ".g-prev",
+    next: ".g-next",
+    label: "Photo",
+    interval: 6000
+  });
 
   /* ---------- Scrollspy (sticky nav + side nav orientation) ---------- */
   function scrollSpy(linkSelector) {
