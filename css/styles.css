@@ -388,7 +388,8 @@ body:has(main > .hero:first-child) .site-header {
 }
 .hero-visual .photo-card img {
   width: 100%;
-  height: clamp(340px, 38vw, 520px);
+  height: auto;
+  aspect-ratio: 2048 / 1582;
   object-fit: cover;
 }
 .hero-orbits {
