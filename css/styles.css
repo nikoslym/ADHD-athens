@@ -1230,6 +1230,13 @@ body:has(main > .hero:first-child) .site-header {
     linear-gradient(180deg, #f7fcff, #fff);
 }
 .page-hero h1 { font-size: clamp(34px, 4.8vw, 56px); font-weight: 800; max-width: 20ch; }
+.page-hero-lede {
+  max-width: 54ch;
+  margin: 8px 0 0;
+  font-size: clamp(16.5px, 1.5vw, 19px);
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
 .page-hero .split {
   margin-top: clamp(28px, 4vw, 48px);
   align-items: start;
@@ -1437,6 +1444,104 @@ body:has(main > .hero:first-child) .site-header {
   gap: clamp(32px, 4vw, 56px);
   align-items: start;
 }
+.contact-shared {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  padding: clamp(22px, 2.5vw, 30px);
+  box-shadow: var(--shadow-s);
+  margin-top: clamp(20px, 3vw, 36px);
+  margin-bottom: clamp(36px, 4.5vw, 52px);
+}
+.contact-shared .ic {
+  flex: none;
+  width: 50px; height: 50px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+}
+.contact-shared h2 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.contact-shared p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--ink-soft);
+}
+.contact-shared a {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--ink);
+}
+.contact-shared a:hover { color: var(--blue-dark); }
+.contact-shared-note {
+  display: block;
+  margin-top: 4px;
+  font-size: 14.5px;
+  color: var(--ink-faint);
+}
+.people-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.person-contact {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  padding: clamp(22px, 2.4vw, 28px);
+  box-shadow: var(--shadow-s);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+}
+.person-contact:hover { transform: translateY(-4px); box-shadow: var(--shadow-m); }
+.person-contact h3 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+.person-role {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--blue-dark);
+  line-height: 1.4;
+}
+.person-details {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+.person-details li {
+  display: grid;
+  gap: 3px;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+.person-details .pd-label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.person-details a {
+  color: var(--ink);
+  font-weight: 600;
+  word-break: break-word;
+}
+.person-details a:hover { color: var(--blue-dark); }
 .contact-card {
   background: #fff;
   border: 1px solid var(--line);
@@ -1553,6 +1658,7 @@ body:has(main > .hero:first-child) .site-header {
   .side-nav a.active { border-color: var(--blue); }
   .split { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
+  .people-contact-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 640px) {
@@ -1568,6 +1674,7 @@ body:has(main > .hero:first-child) .site-header {
   .trust-bar { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .gallery-slide img { height: clamp(220px, 58vw, 360px); }
+  .people-contact-grid { grid-template-columns: 1fr; }
   .site-header .logo img { height: 46px; }
 }
 

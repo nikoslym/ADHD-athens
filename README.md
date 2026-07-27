@@ -32,14 +32,16 @@ You can force a language with `?lang=el` or `?lang=en` in any URL.
 
 ## Placeholders to replace before launch
 
-- **Phone**: `+30 210 000 0000` (appears in footers, CTA and contact page)
-- **Email**: `info@adhdathens.gr`
-- **Address / opening hours** on `contact.html`
 - **Testimonials** on `index.html` are illustrative - replace with real, consented quotes
   (check Greek regulations on patient testimonials for medical services)
 - **Form handling**: the booking form currently uses a `mailto:` action - wire it to a real
   endpoint (e.g. Formspree, Netlify Forms, or a booking system) before launch
 - The stat “35+ years combined experience” - confirm with the team
+
+## Contact
+
+- **Clinic email**: `info@adhd-athens.com`
+- Per-clinician phone, address and email are listed on `contact.html`
 
 ## Structure
 
