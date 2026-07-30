@@ -1600,6 +1600,36 @@ body:has(main > .hero:first-child) .site-header {
   box-shadow: 0 0 0 4px rgba(2, 169, 254, 0.14);
 }
 .form-note { font-size: 13.5px; color: var(--ink-faint); margin-top: 14px; }
+.form-honeypot {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.form-status {
+  margin: 16px 0 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.form-status.is-success {
+  background: rgba(2, 169, 254, 0.1);
+  color: var(--blue-dark);
+  border: 1px solid rgba(2, 169, 254, 0.22);
+}
+.form-status.is-error {
+  background: rgba(200, 60, 60, 0.08);
+  color: #9b2c2c;
+  border: 1px solid rgba(200, 60, 60, 0.2);
+}
+.form-card form.is-sending #booking-submit {
+  opacity: 0.7;
+  pointer-events: none;
+}
 
 /* Skip link */
 .skip-link {

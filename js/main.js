@@ -333,4 +333,74 @@
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
+
+  /* ---------- Booking form → Formspree ---------- */
+  var bookingForm = document.getElementById("booking-form");
+  if (bookingForm) {
+    var statusEl = document.getElementById("booking-status");
+    var submitBtn = document.getElementById("booking-submit");
+
+    function showStatus(kind, en, el) {
+      if (!statusEl) return;
+      statusEl.hidden = false;
+      statusEl.className = "form-status is-" + kind;
+      statusEl.innerHTML =
+        '<span class="en">' + en + "</span>" +
+        '<span class="el">' + el + "</span>";
+    }
+
+    bookingForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var endpoint = bookingForm.getAttribute("action") || "";
+      if (endpoint.indexOf("YOUR_FORM_ID") !== -1 || !endpoint) {
+        showStatus(
+          "error",
+          "The booking form is not connected yet. Please email info@adhd-athens.com.",
+          "Η φόρμα δεν είναι ακόμα συνδεδεμένη. Στείλτε email στο info@adhd-athens.com."
+        );
+        return;
+      }
+
+      bookingForm.classList.add("is-sending");
+      if (statusEl) statusEl.hidden = true;
+
+      var data = new FormData(bookingForm);
+      var contact = (data.get("contact") || "").toString().trim();
+      if (contact.indexOf("@") !== -1) data.set("_replyto", contact);
+
+      fetch(endpoint, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" }
+      })
+        .then(function (res) {
+          if (res.ok) {
+            bookingForm.reset();
+            showStatus(
+              "success",
+              "Thank you — your request was sent. We’ll get back to you shortly.",
+              "Ευχαριστούμε — το αίτημά σας στάλθηκε. Θα επικοινωνήσουμε σύντομα μαζί σας."
+            );
+            return;
+          }
+          return res.json().then(function (body) {
+            var msg = (body && body.error) || "";
+            throw new Error(msg || "Request failed");
+          }).catch(function () {
+            throw new Error("Request failed");
+          });
+        })
+        .catch(function () {
+          showStatus(
+            "error",
+            "Something went wrong. Please try again or email info@adhd-athens.com.",
+            "Κάτι πήγε στραβά. Δοκιμάστε ξανά ή στείλτε email στο info@adhd-athens.com."
+          );
+        })
+        .finally(function () {
+          bookingForm.classList.remove("is-sending");
+          if (submitBtn) submitBtn.blur();
+        });
+    });
+  }
 })();

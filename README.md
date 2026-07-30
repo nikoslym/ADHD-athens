@@ -34,14 +34,14 @@ You can force a language with `?lang=el` or `?lang=en` in any URL.
 
 - **Testimonials** on `index.html` are illustrative - replace with real, consented quotes
   (check Greek regulations on patient testimonials for medical services)
-- **Form handling**: the booking form currently uses a `mailto:` action - wire it to a real
-  endpoint (e.g. Formspree, Netlify Forms, or a booking system) before launch
 - The stat “35+ years combined experience” - confirm with the team
 
 ## Contact
 
 - **Clinic email**: `info@adhd-athens.com`
 - Per-clinician phone, address and email are listed on `contact.html`
+- **Booking form**: Formspree (`https://formspree.io/f/mqerjvgn`), delivering to
+  `info@adhd-athens.com`. Submitted via AJAX from `js/main.js` with in-page EN/EL status.
 
 ## Structure
 
