@@ -7,8 +7,14 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    wait_for_update: 500
+  });
   gtag('js', new Date());
-
   gtag('config', 'G-E83L2EC275');
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +42,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css?v=3">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <script type="application/ld+json">
 {
@@ -494,5 +500,6 @@
 
 
 <script src="js/main.js"></script>
+<script src="js/cookie-consent.js"></script>
 </body>
 </html>

@@ -1708,6 +1708,51 @@ body:has(main > .hero:first-child) .site-header {
   .site-header .logo img { height: 46px; }
 }
 
+/* ---------- Cookie consent ---------- */
+.cookie-consent {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -8px 32px rgba(13, 43, 62, 0.08);
+  backdrop-filter: blur(10px);
+}
+.cookie-consent-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.cookie-consent-text {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+.cookie-consent-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+@media (max-width: 720px) {
+  .cookie-consent-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cookie-consent-actions {
+    justify-content: stretch;
+  }
+  .cookie-consent-actions .btn {
+    flex: 1;
+  }
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
