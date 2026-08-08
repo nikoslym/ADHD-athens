@@ -50,8 +50,8 @@
     bar.innerHTML =
       '<div class="cookie-consent-inner">' +
         '<p class="cookie-consent-text" id="cookie-consent-text">' +
-          '<span class="en">We use cookies for anonymous analytics (Google Analytics) to improve this site.</span>' +
-          '<span class="el">Χρησιμοποιούμε cookies για ανώνυμα στατιστικά (Google Analytics) ώστε να βελτιώνουμε τον ιστότοπο.</span>' +
+          '<span class="en">We use analytics cookies to understand website use and improve your experience.</span>' +
+          '<span class="el">Χρησιμοποιούμε cookies ανάλυσης για να κατανοήσουμε τη χρήση του ιστότοπου και να βελτιώσουμε την εμπειρία σας.</span>' +
         "</p>" +
         '<div class="cookie-consent-actions">' +
           '<button type="button" class="btn btn-ghost btn-s" data-consent="denied">' +
