@@ -46,8 +46,15 @@
     root.setAttribute("lang", lang);
     try { localStorage.setItem("adhd-athens-lang", lang); } catch (e) {}
     document.querySelectorAll(".lang-toggle button").forEach(function (btn) {
-      btn.setAttribute("aria-pressed", String(btn.dataset.lang === lang));
+      var isActive = btn.dataset.lang === lang;
+      btn.setAttribute("aria-pressed", String(isActive));
+      if (btn.dataset.lang === "en") btn.setAttribute("aria-label", "English");
+      else if (btn.dataset.lang === "el") btn.setAttribute("aria-label", "Ελληνικά");
     });
+    var langGroup = document.querySelector(".lang-toggle");
+    if (langGroup) {
+      langGroup.setAttribute("aria-label", lang === "el" ? "Γλώσσα" : "Language");
+    }
     // <option> elements can't be hidden via CSS in all browsers
     document.querySelectorAll("option[data-en]").forEach(function (opt) {
       opt.textContent = lang === "el" ? opt.dataset.el : opt.dataset.en;
@@ -83,16 +90,66 @@
 
   /* ---------- Mobile menu ---------- */
   var burger = document.querySelector(".nav-burger");
-  if (burger && header) {
-    burger.addEventListener("click", function () {
-      var open = header.classList.toggle("menu-open");
+  var mainNav = document.querySelector(".main-nav");
+  if (burger && header && mainNav) {
+    if (!mainNav.id) mainNav.id = "primary-nav";
+    burger.setAttribute("aria-controls", mainNav.id);
+
+    function menuFocusables() {
+      return Array.prototype.slice.call(
+        header.querySelectorAll(
+          ".nav-burger, .main-nav a, .lang-toggle button"
+        )
+      ).filter(function (el) {
+        return !el.disabled && el.offsetParent !== null;
+      });
+    }
+
+    function setMenuOpen(open) {
+      header.classList.toggle("menu-open", open);
       burger.setAttribute("aria-expanded", String(open));
+      burger.setAttribute(
+        "aria-label",
+        open ? "Close menu" : "Menu"
+      );
+      document.body.style.overflow = open ? "hidden" : "";
+      if (open) {
+        var firstLink = mainNav.querySelector("a");
+        if (firstLink) firstLink.focus();
+      } else {
+        burger.focus();
+      }
+    }
+
+    burger.addEventListener("click", function () {
+      setMenuOpen(!header.classList.contains("menu-open"));
     });
+
     document.querySelectorAll(".main-nav a").forEach(function (a) {
       a.addEventListener("click", function () {
-        header.classList.remove("menu-open");
-        burger.setAttribute("aria-expanded", "false");
+        if (header.classList.contains("menu-open")) setMenuOpen(false);
       });
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (!header.classList.contains("menu-open")) return;
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setMenuOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      var items = menuFocusables();
+      if (items.length < 2) return;
+      var first = items[0];
+      var last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     });
   }
 
@@ -169,36 +226,60 @@
   }
 
   /* ---------- FAQ accordion ---------- */
-  document.querySelectorAll(".faq-item").forEach(function (item) {
-    var btn = item.querySelector(".faq-q");
-    if (!btn) return;
-    btn.addEventListener("click", function () {
-      var isOpen = item.classList.contains("open");
-      // close siblings within the same list for calm focus
-      var list = item.closest(".faq-list");
-      if (list) {
+  document.querySelectorAll(".faq-list").forEach(function (list, listIndex) {
+    list.querySelectorAll(".faq-item").forEach(function (item, i) {
+      var btn = item.querySelector(".faq-q");
+      var panel = item.querySelector(".faq-a");
+      if (!btn || !panel) return;
+      var id = "faq-panel-" + listIndex + "-" + i;
+      panel.id = id;
+      btn.setAttribute("type", "button");
+      btn.setAttribute("aria-controls", id);
+      var open = item.classList.contains("open");
+      btn.setAttribute("aria-expanded", String(open));
+      if (open) panel.removeAttribute("inert");
+      else panel.setAttribute("inert", "");
+
+      btn.addEventListener("click", function () {
+        var isOpen = item.classList.contains("open");
         list.querySelectorAll(".faq-item.open").forEach(function (other) {
-          if (other !== item) {
-            other.classList.remove("open");
-            var ob = other.querySelector(".faq-q");
-            if (ob) ob.setAttribute("aria-expanded", "false");
-          }
+          if (other === item) return;
+          other.classList.remove("open");
+          var ob = other.querySelector(".faq-q");
+          var op = other.querySelector(".faq-a");
+          if (ob) ob.setAttribute("aria-expanded", "false");
+          if (op) op.setAttribute("inert", "");
         });
-      }
-      item.classList.toggle("open", !isOpen);
-      btn.setAttribute("aria-expanded", String(!isOpen));
+        item.classList.toggle("open", !isOpen);
+        btn.setAttribute("aria-expanded", String(!isOpen));
+        if (!isOpen) panel.removeAttribute("inert");
+        else panel.setAttribute("inert", "");
+      });
     });
   });
 
   /* ---------- Mini-step expand (coaching) ---------- */
-  document.querySelectorAll(".mini-step-header").forEach(function (btn) {
+  document.querySelectorAll(".mini-step-header").forEach(function (btn, i) {
+    var step = btn.closest(".mini-step");
+    var details = step && step.querySelector(".mini-step-details");
+    if (!details) return;
+    var id = "mini-step-panel-" + i;
+    details.id = id;
+    btn.setAttribute("type", "button");
+    btn.setAttribute("aria-controls", id);
+    var open = step.classList.contains("open");
+    btn.setAttribute("aria-expanded", String(open));
+    details.setAttribute("aria-hidden", String(!open));
+    if (open) details.removeAttribute("inert");
+    else details.setAttribute("inert", "");
+
     btn.addEventListener("click", function () {
-      var step = btn.closest(".mini-step");
       var isOpen = step.classList.contains("open");
       step.classList.toggle("open", !isOpen);
       btn.setAttribute("aria-expanded", String(!isOpen));
-      var details = step.querySelector(".mini-step-details");
-      if (details) details.setAttribute("aria-hidden", String(isOpen));
+      details.setAttribute("aria-hidden", String(isOpen));
+      if (!isOpen) details.removeAttribute("inert");
+      else details.setAttribute("inert", "");
     });
   });
 
@@ -344,9 +425,12 @@
       if (!statusEl) return;
       statusEl.hidden = false;
       statusEl.className = "form-status is-" + kind;
+      statusEl.setAttribute("role", kind === "error" ? "alert" : "status");
+      statusEl.setAttribute("tabindex", "-1");
       statusEl.innerHTML =
         '<span class="en">' + en + "</span>" +
         '<span class="el">' + el + "</span>";
+      statusEl.focus();
     }
 
     bookingForm.addEventListener("submit", function (e) {
@@ -362,6 +446,8 @@
       }
 
       bookingForm.classList.add("is-sending");
+      bookingForm.setAttribute("aria-busy", "true");
+      if (submitBtn) submitBtn.disabled = true;
       if (statusEl) statusEl.hidden = true;
 
       var data = new FormData(bookingForm);
@@ -399,7 +485,8 @@
         })
         .finally(function () {
           bookingForm.classList.remove("is-sending");
-          if (submitBtn) submitBtn.blur();
+          bookingForm.removeAttribute("aria-busy");
+          if (submitBtn) submitBtn.disabled = false;
         });
     });
   }
