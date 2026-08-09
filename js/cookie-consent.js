@@ -51,7 +51,7 @@
       '<div class="cookie-consent-inner">' +
         '<p class="cookie-consent-text" id="cookie-consent-text">' +
           '<span class="en">We use analytics cookies to understand website use and improve your experience.</span>' +
-          '<span class="el">Χρησιμοποιούμε cookies ανάλυσης για να κατανοήσουμε τη χρήση του ιστότοπου και να βελτιώσουμε την εμπειρία σας.</span>' +
+          '<span class="el">Χρησιμοποιούμε cookies στατιστικών για να κατανοούμε τη χρήση της ιστοσελίδας και να βελτιώνουμε την εμπειρία σας.</span>' +
         "</p>" +
         '<div class="cookie-consent-actions">' +
           '<button type="button" class="btn btn-ghost btn-s" data-consent="denied">' +
