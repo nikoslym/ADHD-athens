@@ -810,7 +810,8 @@ body:has(main > .hero:first-child) .site-header {
   line-height: 1.4;
   overflow-wrap: break-word;
 }
-.team-body p { font-size: 15px; color: var(--ink-soft); flex: 1; }
+.team-body .team-role { flex: none; }
+.team-body p:not(.team-role) { font-size: 15px; color: var(--ink-soft); flex: 1; }
 .bio-toggle {
   align-self: flex-start;
   margin-top: 16px;
@@ -880,16 +881,20 @@ body:has(main > .hero:first-child) .site-header {
 .bio-content p { color: var(--ink-soft); font-size: 16px; }
 
 @media (max-width: 1024px) {
-  .bio-profile { grid-template-columns: 1fr; }
+  .bio-profile {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
   .bio-photo {
     position: static;
     max-width: 320px;
+    margin: 8px 0 22px;
   }
   /* Keep name + role visible above the fold on stacked/narrow layouts */
   .bio-content { display: contents; }
   .bio-profile > .bio-photo { order: 3; }
-  .bio-profile h2 { order: 1; }
-  .bio-profile .team-role { order: 2; }
+  .bio-profile h2 { order: 1; margin: 0 0 4px; }
+  .bio-profile .team-role { order: 2; margin: 0 0 8px; }
   .bio-profile .bio-content > *:not(h2):not(.team-role) { order: 4; }
 }
 
