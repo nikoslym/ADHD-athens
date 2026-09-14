@@ -17,14 +17,25 @@
     });
   }
 
+  function setBannerOffset(el) {
+    var h = el ? el.offsetHeight : 0;
+    document.documentElement.style.setProperty("--cookie-banner-h", h ? h + "px" : "0px");
+  }
+
   function save(value) {
     try { localStorage.setItem(KEY, value); } catch (e) {}
     updateConsent(value === "granted");
     var el = document.getElementById("cookie-consent");
     if (el) el.remove();
+    setBannerOffset(null);
+    window.removeEventListener("resize", onBannerResize);
     if (previouslyFocused && typeof previouslyFocused.focus === "function") {
       try { previouslyFocused.focus(); } catch (e) {}
     }
+  }
+
+  function onBannerResize() {
+    setBannerOffset(document.getElementById("cookie-consent"));
   }
 
   if (choice === "granted") {
@@ -64,6 +75,8 @@
       "</div>";
 
     document.body.appendChild(bar);
+    setBannerOffset(bar);
+    window.addEventListener("resize", onBannerResize);
 
     bar.addEventListener("click", function (e) {
       var btn = e.target.closest("[data-consent]");

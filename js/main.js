@@ -155,18 +155,28 @@
 
   /* ---------- Reveal-on-scroll (fade-up, staggered) ---------- */
   var revealEls = document.querySelectorAll(".reveal, .draw-path, .journey");
+  function revealEl(el) { el.classList.add("in-view"); }
+  function revealHashTarget() {
+    var id = (location.hash || "").replace(/^#/, "");
+    if (!id) return;
+    var target = document.getElementById(id);
+    if (!target) return;
+    revealEl(target);
+    target.querySelectorAll(".reveal, .draw-path, .journey").forEach(revealEl);
+  }
   if ("IntersectionObserver" in window && !prefersReducedMotion) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
+          revealEl(entry.target);
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    }, { threshold: 0.01, rootMargin: "0px 0px -8% 0px" });
     revealEls.forEach(function (el) { io.observe(el); });
+    revealHashTarget();
   } else {
-    revealEls.forEach(function (el) { el.classList.add("in-view"); });
+    revealEls.forEach(revealEl);
   }
 
   /* ---------- SVG line-draw setup (normalize dash to path length) ---------- */
