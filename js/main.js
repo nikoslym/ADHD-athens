@@ -461,8 +461,8 @@
       if (statusEl) statusEl.hidden = true;
 
       var data = new FormData(bookingForm);
-      var contact = (data.get("contact") || "").toString().trim();
-      if (contact.indexOf("@") !== -1) data.set("_replyto", contact);
+      var email = (data.get("email") || "").toString().trim();
+      if (email) data.set("_replyto", email);
 
       fetch(endpoint, {
         method: "POST",

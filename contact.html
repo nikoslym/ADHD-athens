@@ -312,8 +312,8 @@
       <div class="form-card reveal" style="--d:.1s">
         <h2 style="font-size:26px"><span class="en">Book your appointment</span><span class="el">Κλείστε το ραντεβού σας</span></h2>
         <p style="color:var(--ink-soft);font-size:15.5px;margin-bottom:26px">
-          <span class="en">Four quick fields. That’s all it takes to start.</span>
-          <span class="el">Τέσσερα γρήγορα πεδία. Μόνο αυτό χρειάζεται για να ξεκινήσετε.</span>
+          <span class="en">A few quick fields. That’s all it takes to start.</span>
+          <span class="el">Λίγα γρήγορα πεδία. Μόνο αυτό χρειάζεται για να ξεκινήσετε.</span>
         </p>
         <form id="booking-form" action="https://formspree.io/f/mqerjvgn" method="POST">
           <input type="hidden" name="_subject" value="ADHD Athens — appointment request">
@@ -324,10 +324,14 @@
               <input id="f-name" name="name" type="text" autocomplete="name" required aria-required="true">
             </div>
             <div class="form-field">
-              <label for="f-phone"><span class="en">Phone or email <span aria-hidden="true">*</span></span><span class="el">Τηλέφωνο ή email <span aria-hidden="true">*</span></span></label>
-              <input id="f-phone" name="contact" type="text" autocomplete="on" required aria-required="true">
+              <label for="f-email"><span class="en">Email <span aria-hidden="true">*</span></span><span class="el">Email <span aria-hidden="true">*</span></span></label>
+              <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-required="true">
             </div>
-            <div class="form-field full">
+            <div class="form-field">
+              <label for="f-phone"><span class="en">Phone <span aria-hidden="true">*</span></span><span class="el">Τηλέφωνο <span aria-hidden="true">*</span></span></label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-required="true">
+            </div>
+            <div class="form-field">
               <label for="f-service"><span class="en">I’m interested in…</span><span class="el">Ενδιαφέρομαι για…</span></label>
               <select id="f-service" name="service">
                 <option value="assessment" data-en="ADHD Assessment" data-el="Αξιολόγηση ΔΕΠΥ">ADHD Assessment</option>
